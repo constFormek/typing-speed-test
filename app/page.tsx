@@ -1,6 +1,9 @@
+import Input from "./Input";
 
 export default function Home() {
   return (
-    <div></div>
+    <div className="">
+      <Input />
+    </div>
   );
 }

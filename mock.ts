@@ -1,0 +1,1 @@
+export const MOCK_TEXT = "Siemanko czesć, to test na program ktory pisze wlasnie teraz samemu moze z odrobinka pomocy hihihi." 

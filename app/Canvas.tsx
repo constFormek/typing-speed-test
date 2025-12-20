@@ -16,7 +16,6 @@ const Canvas = () => {
 
       if (ctx) {
         ctx.clearRect(0,0, canvas.width, canvas.height); 
-        ctx.font = "normal 12px serif";
 
         let currentX = STARTING_POS_X;
         let currentY = STARTING_POS_Y;
@@ -44,6 +43,7 @@ const Canvas = () => {
            baseX: STARTING_POS_X,
            baseY: STARTING_POS_Y,
            text: MOCK_TEXT,
+           font: "normal 24px serif"
         }
         draw(drawArgs);
       }

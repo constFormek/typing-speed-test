@@ -9,3 +9,18 @@
 - [ ] - calculate the x,y of each letter
 - [ ] - find a way to store info about every character
 - [ ] - write a function to rerender letter only when status changed (active/correct/incorrect)
+
+
+
+        
+        if (testedChar.content === input[i]) {
+          testedChar.status = "correct";
+          ctx.fillStyle = "#0F0";
+        } else if (testedChar.content !== input[i]) {
+          testedChar.status = "incorrect";
+          ctx.fillStyle = "#F00";
+        } else if (i >= text.length-1) {
+          ctx.fillStyle = "#808"
+        }
+
+         ctx.fillText(newChar.content, newChar.x, newChar.y);

@@ -1,7 +1,7 @@
 "use client"
 
 import { STARTING_POS_X, STARTING_POS_Y } from "@/lib/constants";
-import draw from "@/lib/draw";
+import { RenderText } from "@/lib/draw";
 import { MOCK_TEXT } from "@/mock";
 import { useRef, useEffect } from "react"
 
@@ -18,13 +18,11 @@ const Canvas = ({userInput}: {userInput: string}) => {
 
         const drawArgs = {
            ctx: ctx,
-           baseX: STARTING_POS_X,
-           baseY: STARTING_POS_Y,
            targetText: MOCK_TEXT,
            userInput: userInput,
            font: "normal 24px serif"
         }
-        draw(drawArgs);
+        RenderText(drawArgs);
       }
     }
   }, [userInput])

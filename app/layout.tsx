@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local'
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 
 const sora = localFont({
   src: [
@@ -35,8 +36,26 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sora.className} antialiased`}
+        className={`${sora.className} 
+        antialiased
+        flex
+        flex-col
+        items-center
+        gap-8
+        md:gap-10
+        lg:gap-16
+        p-4
+        pb-8
+        md:p-8
+        md:pb-16
+        lg:p-28
+        lg:py-8
+        min-h-screen
+        max-h-screen
+        `}
       >
+        <Navbar />
+
         {children}
       </body>
     </html>

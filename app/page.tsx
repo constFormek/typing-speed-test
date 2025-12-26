@@ -12,7 +12,7 @@ export default function Home() {
     setUserInput(e.target.value);
   }
   return (
-        <div className="grid place-items-center w-screen h-screen  ">
+        <div className=" ">
           <Input handleChange={handleChange}/>
 
           <Canvas userInput={userInput}/>

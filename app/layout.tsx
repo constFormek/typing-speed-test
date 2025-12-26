@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from 'next/font/local'
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Statistics from "@/components/Statistics";
 
 const sora = localFont({
   src: [
@@ -40,7 +41,6 @@ export default function RootLayout({
         antialiased
         flex
         flex-col
-        items-center
         gap-8
         md:gap-10
         lg:gap-16
@@ -48,13 +48,15 @@ export default function RootLayout({
         pb-8
         md:p-8
         md:pb-16
-        lg:p-28
+        lg:px-28
         lg:py-8
         min-h-screen
         max-h-screen
         `}
       >
         <Navbar />
+
+        <Statistics />
 
         {children}
       </body>

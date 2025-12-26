@@ -20,7 +20,7 @@ const Canvas = ({userInput}: {userInput: string}) => {
            ctx: ctx,
            targetText: MOCK_TEXT,
            userInput: userInput,
-           font: "normal 24px serif"
+           font: "normal 24px sora"
         }
         RenderText(drawArgs);
       }

@@ -5,7 +5,7 @@
 - [X] - write basic Navbar structure
 - [X] - make Navbar responsive
 - [ ] - setup other components
-- [ ] - create mock statistic component
+- [X] - create mock statistic component
 - [ ] - code settings stucture
 - [ ] - make mobile dropdowns
 - [ ] - make pc settings work

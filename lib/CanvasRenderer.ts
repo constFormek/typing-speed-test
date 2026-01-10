@@ -27,12 +27,12 @@ export class CanvasRenderer {
 
             if (userInput.length > i) {
                 if ( typedChar == char || (typedChar == "-" && char == "—")) {
-                this.ctx.fillStyle = "good color" // temporary
+                this.ctx.fillStyle = "#4DD67B"
                 } else {
-                    this.ctx.fillStyle = "bad color" // temporary
+                    this.ctx.fillStyle = "#D64D5B" // temporary
                 }
             } else {
-                this.ctx.fillStyle = "gray color" // temporary
+                this.ctx.fillStyle = "#949497" // temporary
             }
             
 

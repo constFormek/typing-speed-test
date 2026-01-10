@@ -3,6 +3,7 @@ import localFont from 'next/font/local'
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Statistics from "@/components/Statistics";
+import Settings from "@/components/Settings";
 
 const sora = localFont({
   src: [
@@ -54,11 +55,12 @@ export default function RootLayout({
         max-h-screen
         `}
       >
-        <Navbar />
+          <Navbar />
 
-        <Statistics />
+          <Statistics />
+          <Settings />
 
-        {children}
+          {children}
       </body>
     </html>
   );

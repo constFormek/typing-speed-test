@@ -1,57 +1,71 @@
 "use client"
 
-import { RenderText } from "@/lib/draw";
-import { MOCK_TEXT } from "@/mock";
+import { CanvasRenderer } from "@/lib/CanvasRenderer";
+import { DEFAULT_ENGINE_CONFIG } from "@/lib/constants";
+import { GameSession } from "@/lib/GameSession";
+import { TextEngine } from "@/lib/TextEngine";
 import { useRef, useEffect, useState } from "react"
 
-const Canvas = ({userInput}: {userInput: string}) => {
-    const [canvasSize, setCanvasSize] = useState<{w: number, h: number}>({w: 800, h: 500});
-    const canvasRef = useRef<HTMLCanvasElement>(null);
+interface CanvasProps {
+  userInput: string,
+  timeLimit: number,
+  targetText: string,
+}
 
-    useEffect(() => {
-      const resizeObserver = new ResizeObserver((entries) =>{
-        const entry = entries[0];
+const Canvas = ({userInput, timeLimit, targetText}: CanvasProps ) => {
+  const [canvasSize, setCanvasSize] = useState<{width: number, height: number}>({width: 800, height: 500});
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const engineRef = useRef<TextEngine | null>(null);
+  const sessionRef = useRef<GameSession | null>(null);
+  const rendererRef = useRef<CanvasRenderer | null>(null);
 
-        setCanvasSize({
-          w: entry.contentRect.width,
-          h: entry.contentRect.height,
-        })
-      });
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver((entries) =>{
+      const entry = entries[0];
 
-      if (canvasRef.current) {
-        resizeObserver.observe(canvasRef.current);
-      }
+      setCanvasSize({
+        width: entry.contentRect.width,
+        height: entry.contentRect.height,
+      })
+    });
 
-      return () => resizeObserver.disconnect();
-    }, [])
+    if (canvasRef.current) {
+      resizeObserver.observe(canvasRef.current);
+    }
 
-    useEffect(() => {
+    return () => resizeObserver.disconnect();
+  }, [])
+
+
+  useEffect(() => {
     if (canvasRef.current) {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext("2d");
+      
+
       let fontSize = 40;
-      if (canvasSize.w <= 640) {
-        fontSize = 32;
-      }
+      if (canvasSize.width <= 640) fontSize = 32;
+
+      const font = `normal sora ${fontSize}px`
 
       if (ctx) {
-        ctx.clearRect(0,0, canvas.width, canvas.height); 
-
-        const drawArgs = {
-           ctx: ctx,
-           targetText: MOCK_TEXT,
-           userInput: userInput,
-           canvasWidth: canvasSize.w,
-           font: `normal ${fontSize}px sora`
-        }
-        RenderText(drawArgs);
+        engineRef.current = new TextEngine({
+          ...DEFAULT_ENGINE_CONFIG,
+          ctx,
+          targetText,
+          canvasSize,
+          font
+        })
       }
-    }
-  }, [userInput, canvasSize])
 
-  
+      console.log(targetText)
+      
+    }
+  }, [canvasSize, targetText, timeLimit])
+
+
   return (
-      <canvas width={canvasSize.w} height={canvasSize.h} className="border-white/20 border-y w-full object-contain" ref={canvasRef}/>  
+    <canvas width={canvasSize.width} height={canvasSize.height} className="border-white/20 border-y w-full object-contain" ref={canvasRef}/>  
   )
 }
 

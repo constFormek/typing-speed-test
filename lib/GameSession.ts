@@ -42,14 +42,22 @@ export class GameSession {
     }
 
     public handleInput = (input: string) => {
-        if (this.startTime == null) {
+        if (this.hasGameStarted == false) {
             this.startTime = Date.now();
+            this.hasGameStarted = true;
         }
         
         this.userInput = input;
-
         this.calculateStats();
-    }
 
+        const event = new CustomEvent('game-stats-update', {
+            detail: {
+                wpm: this.wpm,
+                accuracy: this.accuracy,
+            }
+        })
+
+        window.dispatchEvent(event);
+    }
 
 }

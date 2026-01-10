@@ -56,6 +56,13 @@ const Canvas = ({userInput, timeLimit, targetText}: CanvasProps ) => {
           canvasSize,
           font
         })
+
+        sessionRef.current = new GameSession({
+          time: timeLimit,
+          targetText: targetText,
+        })
+
+        rendererRef.current = new CanvasRenderer(ctx, engineRef.current, sessionRef.current);
       }
 
       console.log(targetText)
@@ -63,7 +70,15 @@ const Canvas = ({userInput, timeLimit, targetText}: CanvasProps ) => {
     }
   }, [canvasSize, targetText, timeLimit])
 
+  useEffect(() => {
+    if (sessionRef.current) {
+      sessionRef.current.handleInput(userInput);
+    }
 
+    if (rendererRef.current) {
+      rendererRef.current.draw();
+    }
+  }, [userInput])
   return (
     <canvas width={canvasSize.width} height={canvasSize.height} className="border-white/20 border-y w-full object-contain" ref={canvasRef}/>  
   )
